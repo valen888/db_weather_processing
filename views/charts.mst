@@ -1,0 +1,118 @@
+<!doctype html>
+<html lang="en">
+  {{> head }}
+    {{> header }}
+      <div class="d-flex flex-column bd-highlight mb-3">
+        <div class="offset-md-1 justify-content-md-center" style="width: 90%; margin: 5%;">
+          <div class="text-center">
+            <h1>Mode and Median</h1>
+          </div>
+          <table class="table table-hover table-light">
+            <thead>
+              <tr>
+                <th scope="col">Parameter</th>
+                <th scope="col">Mode</th>
+                <th scope="col">Median</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Temperature</td>
+                <td>{{mode.temperature}}</td>
+                <td>{{median.temperature}}</td>
+              </tr>
+              <tr>
+                <td>Humidity</td>
+                <td>{{mode.humidity}}</td>
+                <td>{{median.humidity}}</td>
+              </tr>
+              <tr>
+                <td>Pressure</td>
+                <td>{{mode.pressure}}</td>
+                <td>{{median.pressure}}</td>
+              </tr>
+              <tr>
+                <td>Wind Speed</td>
+                <td>{{mode.windSpeed}}</td>
+                <td>{{median.windSpeed}}</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div id="chart_div"  class="offset-md-1 justify-content-md-center" style="width: 90%; margin: 5%; height: 600px;"></div>
+        <div id="gauge_div" class="offset-md-1 justify-content-md-center" style="width: 90%; margin: 5%; height: 400px;"></div>
+      </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mustache.js/3.0.1/mustache.min.js"></script>
+
+  <script type="text/javascript">
+  fetch("/allcities")
+    .then((response) => {
+        return response.json();
+    })
+    .then(cities =>
+    {
+      /////////////////////////////////
+   
+      /////////////////////////////////
+
+google.charts.load('current', {packages: ['corechart', 'bar']});
+google.charts.setOnLoadCallback(drawMultSeries);
+
+function drawMultSeries() {
+      gdata = new google.visualization.DataTable();
+      let i = 0;
+      cities.forEach(city => {
+        gdata.addColumn('number', city.name);
+        i++;
+      })
+      gdata.addRows(i + 1);
+      i = 0;
+      cities.forEach(city => {
+        gdata.setCell(0, i++, city.temperature);
+      })
+      var options = {
+        title: 'Cities temperature',
+        chartArea: {width: '50%'},
+        hAxis: {
+          title: 'Temperature',
+          minValue: 0
+        },
+        vAxis: {
+          title: ''
+        }
+      };
+
+      var chart = new google.visualization.BarChart(document.getElementById('chart_div'));
+      chart.draw(gdata, options);
+    }
+      /////////////////////////////////
+
+    google.charts.load('current', {'packages':['corechart']});
+      google.charts.setOnLoadCallback(drawChart);
+
+      function drawChart() {
+        let array = [['Age', 'Weight']];
+        cities.forEach(city => {
+          array.push([+city.humidity, +city.temperature]);
+        })
+        var data = google.visualization.arrayToDataTable(array);
+
+        var options = {
+          title: 'temperature dependence on humidity',
+          hAxis: {title: 'Humidity', minValue: 60, maxValue: 100},
+          vAxis: {title: 'Temperature', minValue: 0, maxValue: 20},
+          legend: 'none'
+        };
+
+        var chart = new google.visualization.ScatterChart(document.getElementById('gauge_div'));
+
+        chart.draw(data, options);
+              /////////////////////////////////
+
+      }
+    });
+  </script>
+    {{> footer }}
+  </body>
+</html>

@@ -1,0 +1,24 @@
+<!doctype html>
+<html lang="en">
+  {{> head }}
+    {{> header }}
+    <br/>
+    <br/>
+    <div class="container">
+  
+    <div class="col">
+      <br/>
+      <a href="/backup" style="background-color: #ffffff; color: black; margin: auto;width:25%" class="btn btn-lg btn-block">Backup</a>
+    </div>
+    <div class="col">
+       
+    </div>
+    <div class="col">
+      <br/>
+      <a href="/restore" style="background-color: #ffffff; color: black; margin: auto;width:25%" class="btn btn-lg btn-block">Restore</a>
+    </div>
+  
+</div>
+    {{> footer }}
+  </body>
+</html>

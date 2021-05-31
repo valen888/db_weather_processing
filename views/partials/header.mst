@@ -1,0 +1,25 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-light sticky-top">
+  <a href="/" class="navbar-brand">
+    
+  </a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" 
+  aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse"  id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto " style=" width: 100%;
+    text-align: center;
+    padding: 0;
+    margin-left: 600px;">
+      
+      <li class="nav-item active">
+        <a href="/cities" class="nav-link">Cities</a>
+      </li>
+      <li class="nav-item active">
+        <a href="/data" class="nav-link">Data procession</a>
+      </li>
+      <li class="nav-item active">
+        <a href="/peps" class="nav-link">Backup/Restore</a>
+      </li>
+</nav>

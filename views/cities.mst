@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="en">
+  {{> head }}
+    {{> header }}
+    <div class="container justify-content-md-center">
+      <div class="text-center">
+        <h1>Cities to proceed</h1>
+      </div>
+      <table class="table table-hover table-light">
+        <thead>
+          <tr>
+            <th scope="col">City</th>
+            <th scope="col">Temperature</th>
+            <th scope="col">Pressure</th>
+            <th scope="col">Humidity</th>
+            <th scope="col">Wind Speed</th>
+          </tr>
+        </thead>
+        <tbody>
+        {{#cities}}
+          <tr>
+            <td style="background-color: blue; color:white;">{{name}}</td>
+            <td>{{temperature}} °C</td>
+            <td>{{pressure}} hPa</td>
+            <td>{{humidity}} %</td>
+            <td>{{windSpeed}} meter/sec</td>
+          </tr>
+        {{/cities}}
+        </tbody>
+      </table>
+    </div>
+
+    {{> footer }}
+  </body>
+</html>
